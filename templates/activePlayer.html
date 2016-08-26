@@ -1,0 +1,641 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>活跃玩家</title>
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="../static/css/common.css" />
+<link href="../static/css/font-awesome.min.css" type="text/css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../static/css/layout.css" />
+<link rel="stylesheet" type="text/css" href="../static/css/chartlayout.css" />
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap-datetimepicker/bootstrap-datetimepicker.css" />
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap-sortable/bootstrap-sortable.css"/>
+</head>
+
+<body>
+
+<div class="success-box" id="success-box">
+    <h4 class="success-heading">修改权限成功！！</h4>
+</div>
+
+<div class="msg-box" id="msg-box">
+    <h4 class="alert-heading">发生错误了</h4>
+    <p id="msg-content">fdfdsfd发生错误了发生错误了发生错误了发生错误了</p>
+</div>
+
+<div class="spin" id="spin">
+	<img src="../static/images/spin.svg"/>
+</div>
+
+
+<div id="wrapper" class="toggled">
+  <div class="overlay" style="visibility:hidden"></div>
+  
+  <!-- Sidebar -->
+  <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+    <ul class="nav sidebar-nav">
+      <li class="sidebar-brand"> <a href="#"> DATANOSE </a> </li>
+      <li> <a href="info"><i class="fa fa-clock-o"></i> 实时概况</a> </li>
+      <li> <a href="report"><i class="fa fa-file-text-o"></i> 报表</a> </li>
+      <li class="dropdown open"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-users"></i> 玩家分析 <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <!--<li class="dropdown-header">新增玩家</li>-->
+          <li><a href="newPlayer">新增玩家</a></li>
+          <li class="select"><a href="activePlayer">活跃玩家</a></li>
+          <li><a href="retained">留存统计</a></li>
+          <li><a href="effectPlayer">有效玩家</a></li>
+          <li><a href="#">滚服玩家</a></li>
+          <li><a href="#">标签分析</a></li>
+          <li><a href="#">设备详情</a></li>
+          <li><a href="#">生命轨迹</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-jpy"></i> 付费分析 <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <li><a href="payment">付费数据</a></li>
+          <li><a href="rechargebehavior">付费行为</a></li>
+          <li><a href="transformation">付费转化</a></li>
+          <li><a href="whale">付费排行</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-angle-double-down"></i> 流失分析 <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <!--<li class="dropdown-header">新增玩家</li>-->
+          <li><a href="outflow">流失统计</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-desktop"></i> 在线分析 <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <!--<li class="dropdown-header">新增玩家</li>-->
+          <li><a href="analysis">在线分析</a></li>
+          <li><a href="habits">在线习惯</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-road"></i> 渠道分析 <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <!--<li class="dropdown-header">新增玩家</li>-->
+          <li><a href="chaninfo">渠道分析</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-puzzle-piece"></i> 系统分析 <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <!--<li class="dropdown-header">新增玩家</li>-->
+          <li><a href="item">道具分析</a></li>
+          <li><a href="taskanalysis">任务分析</a></li>
+          <li><a href="gamelevel">关卡分析</a></li>
+          <li><a href="gradeDetail">等级分析</a></li>
+          <li><a href="currency">虚拟币统计</a></li>
+          <li><a href="#">房间分析</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-life-ring"></i> 自定义事件分析 <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <!--<li class="dropdown-header">新增玩家</li>-->
+          <li><a href="#">事件列表</a></li>
+          <li><a href="#">漏斗管理</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-location-arrow"></i> 运营支持 <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <!--<li class="dropdown-header">新增玩家</li>-->
+          <li><a href="#">精准推送</a></li>
+          <li><a href="#">数据报警</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-crosshairs"></i> 数据挖掘 <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <!--<li class="dropdown-header">新增玩家</li>-->
+          <li><a href="#">聚类分析</a></li>
+          <li><a href="#">新玩家价值</a></li>
+        </ul>
+      </li>
+      <li> <a href="#"><i class="fa fa-signal"></i> 市场分析</a> </li>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs"></i> 技术支持 <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <!--<li class="dropdown-header">新增玩家</li>-->
+          <li><a href="#">实时日志</a></li>
+          <li><a href="#">崩溃分析</a></li>
+          <li><a href="#">用户错误</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-suitcase"></i> 管理中心 <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <!--<li class="dropdown-header">新增玩家</li>-->
+          <li><a href="#">设置</a></li>
+          <li><a href="#">下载中心</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+  <!-- /#sidebar-wrapper --> 
+  
+  <!-- Page Content -->
+  <div id="page-content-wrapper">
+  	<div id="top">
+    	<div class="user-menu">
+        	<span class="menu-item">demo@datanose.com <b class="caret"></b></span>
+        	<span class="menu-item"><i class="fa fa-sign-out logout"></i></span>
+        </div>
+    </div>
+    <div class="main">
+      <div class="menu-banner">
+      	   <div class="date-row">
+                <div style="float:left;margin-top:-7px; margin-right:10px;" class="input-group date form_date col-md-5" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                    <input class="form-control form-control1" size="16" type="text" value="" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar icon-calendar"></span></span>
+                </div>
+                <input type="hidden" id="dtp_input1" value=""/>
+                <label style="float:left;margin-right:10px;">到</label>
+                <div style="float:left;margin-top:-7px; margin-right:10px;" class="input-group date form_date col-md-5" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                    <input class="form-control form-control2" size="16" type="text" value="" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar icon-calendar"></span></span>
+                </div>
+                <input type="hidden" id="dtp_input2" value=""/>
+          </div>
+      	  <span class="item-btn date-type select" id="today">今日</span>
+          <span class="item-btn date-type" id="yestday">昨日</span>
+          <span class="item-btn date-type" id="lastweek">近7日</span>
+          <span class="item-btn date-type" id="month">近30日</span>
+          <span class="item-btn date-type" id="last2month">近90日</span>
+          <span class="search-btn">查询</span>
+      </div>
+      
+      <div class="tip-box">
+			<ul>
+            <li>付费玩家：
+统计所选时期内，每日登陆的玩家中有过付费行为的玩家数量。</li>
+            <li>DAU（日活跃玩家数量）：
+统计所选时期内，每日成功登录游戏的玩家数量。</li>
+            <li>WAU（周活跃玩家数量）：
+统计所选时期内，当日往前推7日（当日计入天数）期间内，登陆过游戏的玩家总数量，按照玩家ID排重。</li>
+            <li>MAU（月活跃玩家数量）：
+统计所选时期内，当日往前推30日（当日计入天数）期间内，登陆过游戏的玩家总数量，按照玩家ID排重。</li>
+            </ul>
+      </div>
+      
+      <div class="chart-box" id="chart-tab1">
+      	<div class="title-box">
+        	<span class="title">活跃玩家</span>
+            <span class="delete-box"><i class="fa fa-remove delete-tab"></i></span>
+        </div>
+        <div class="cs-box">
+        	<div class="menu-box" id="add-box">
+                <a class="menu-row select" data-type="DAU-content">DAU</a>
+                <a class="menu-row" style="width:200px" data-type="WAU-content">DAUDAU | WAU |MAU</a>
+                <a class="menu-row"  data-type="mau-content">MAUDAU/MAU
+                <div class="back" ></div></a>
+            </div>
+        </div>
+     	<!--DAU-->
+        <div class="DAU-content tab-item" data-pageNo="1">
+            <div class="chart-content" data-type="area" id="DAU-chart">
+            </div>
+            <div class="tb-box">
+            	<!--table table-striped table-hover sortable-->
+                <table class="table table-striped table-bordered table-hover datatable">
+                    <thead>
+                        <tr class="table-title">
+                            <th>日期</th>
+                            <th>设备激活</th>
+                            <th>新增帐户</th>
+                            <th>新增设备</th>
+                        </tr>
+                    </thead>
+                    <tbody class="data-tbody">
+                        <tr class=" gradeA odd">
+                            <td>2015-05-01</td>
+                            <td>3</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr class=" gradeA even">
+                            <td>2018-05-01</td>
+                            <td>9</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="pageContainer"></div>
+            </div>
+        </div>
+        <!--end DAU-->
+        <!--WAU-->
+        <div class="WAU-content tab-item" data-pageNo="1" style="display:none">
+            <div class="chart-content" data-type="area" id="WAU-chart">
+            </div>
+            <div class="tb-box">
+                <table class="table table-striped table-bordered table-hover datatable">
+                    <thead>
+                        <tr class="table-title">
+                            <th>日期</th>
+                            <th>设备激活</th>
+                            <th>新增帐户</th>
+                            <th>新增设备</th>
+                        </tr>
+                    </thead>
+                    <tbody class="data-tbody">
+                        <tr class=" gradeA odd">
+                            <td>2015-05-01</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr class=" gradeA even">
+                            <td>2015-05-01</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="pageContainer"></div>
+            </div>
+        </div>
+        <!--WAU add-->
+        <!--mau-->
+        <div class="mau-content tab-item" data-pageNo="1" style="display:none">
+            <div class="chart-content" data-type="area" id="mau-chart">
+            </div>
+            <div class="tb-box">
+                <table class="table table-striped table-bordered table-hover datatable">
+                    <thead>
+                        <tr class="table-title">
+                            <th>日期</th>
+                            <th>设备激活</th>
+                            <th>新增帐户</th>
+                            <th>新增设备</th>
+                        </tr>
+                    </thead>
+                    <tbody class="data-tbody">
+                        <tr class=" gradeA odd">
+                            <td>2015-05-01</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr class=" gradeA even">
+                            <td>2015-05-01</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="pageContainer"></div>
+            </div>
+        </div>
+        <!--mau add-->
+        
+      </div>
+      <!--end chart-box-->
+            
+      <div class="chart-box" id="chart-tab2">
+        <div class="cs-box">
+        	<div class="menu-box" id="type-box">
+                <a class="menu-row select" data-type="days-content">已玩天数</a>
+                <a class="menu-row" data-type="level-content">等级</a>
+                <a class="menu-row" data-type="area-content">地区</a>
+                <a class="menu-row" data-type="county-content">国家</a>
+                <a class="menu-row" data-type="sex-content">性别</a>
+                <a class="menu-row" data-type="age-content">年龄</a>
+                <a class="menu-row" data-type="account-content">帐户类型
+                <div class="back"></div></a>
+            </div>
+            <span class="delete-box"><i class="fa fa-remove delete-tab"></i></span>
+        </div>
+        <!--first-->
+         <div class="days-content tab-item" data-pageNo="1" data-pageNo="1">
+         	<div class="chart-content" data-type="bar" id="days-chart">
+            	
+            </div>
+            <div class="tb-box">
+                <table class="table table-striped table-bordered table-hover datatable">
+                    <thead>
+                        <tr class="table-title">
+                            <th>日期</th>
+                            <th>设备激活</th>
+                            <th>新增帐户</th>
+                            <th>新增设备</th>
+                        </tr>
+                    </thead>
+                    <tbody class="data-tbody">
+                        <tr class=" gradeA odd">
+                            <td>2015-05-01</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr class=" gradeA even">
+                            <td>2015-05-01</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="pageContainer"></div>
+            </div>
+         </div>
+        <!--end first-->
+        <!--no.-->
+         <div class="level-content tab-item" data-pageNo="1" style="display:none">
+         	<div class="chart-content" data-type="area" id="level-chart">
+            	
+            </div>
+            <div class="tb-box">
+                <table class="table table-striped table-bordered table-hover datatable">
+                    <thead>
+                        <tr class="table-title">
+                            <th>日期</th>
+                            <th>设备激活</th>
+                            <th>新增帐户</th>
+                            <th>新增设备</th>
+                        </tr>
+                    </thead>
+                    <tbody class="data-tbody">
+                        <tr class=" gradeA odd">
+                            <td>2015-05-01</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr class=" gradeA even">
+                            <td>2015-05-01</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="pageContainer"></div>
+            </div>
+         </div>
+        <!--end no.-->
+        <!--area.-->
+         <div class="area-content tab-item" data-pageNo="1" style="display:none">
+         	<div class="chart-content" data-type="area" id="area-chart">
+            	
+            </div>
+            <div class="tb-box">
+                <table class="table table-striped table-bordered table-hover datatable">
+                    <thead>
+                        <tr class="table-title">
+                            <th>日期</th>
+                            <th>设备激活</th>
+                            <th>新增帐户</th>
+                            <th>新增设备</th>
+                        </tr>
+                    </thead>
+                    <tbody class="data-tbody">
+                        <tr class=" gradeA odd">
+                            <td>2015-05-01</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr class=" gradeA even">
+                            <td>2015-05-01</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="pageContainer"></div>
+            </div>
+         </div>
+        <!--end area.-->
+        <!--county.-->
+         <div class="county-content tab-item" data-pageNo="1" style="display:none">
+         	<div class="chart-content" data-type="area" id="county-chart">
+            	
+            </div>
+            <div class="tb-box">
+                <table class="table table-striped table-bordered table-hover datatable">
+                    <thead>
+                        <tr class="table-title">
+                            <th>日期</th>
+                            <th>设备激活</th>
+                            <th>新增帐户</th>
+                            <th>新增设备</th>
+                        </tr>
+                    </thead>
+                    <tbody class="data-tbody">
+                        <tr class=" gradeA odd">
+                            <td>2015-05-01</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr class=" gradeA even">
+                            <td>2015-05-01</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="pageContainer"></div>
+            </div>
+         </div>
+        <!--end county.-->
+        <!--county.-->
+         <div class="sex-content tab-item" data-pageNo="1" style="display:none">
+         	<div class="chart-content" data-type="area" id="sex-chart">
+            	
+            </div>
+            <div class="tb-box">
+                <table class="table table-striped table-bordered table-hover datatable">
+                    <thead>
+                        <tr class="table-title">
+                            <th>日期</th>
+                            <th>设备激活</th>
+                            <th>新增帐户</th>
+                            <th>新增设备</th>
+                        </tr>
+                    </thead>
+                    <tbody class="data-tbody">
+                        <tr class=" gradeA odd">
+                            <td>2015-05-01</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr class=" gradeA even">
+                            <td>2015-05-01</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="pageContainer"></div>
+            </div>
+         </div>
+        <!--end county.-->
+        <!--age.-->
+         <div class="age-content tab-item" data-pageNo="1" style="display:none">
+         	<div class="chart-content" data-type="area" id="age-chart">
+            	
+            </div>
+            <div class="tb-box">
+                <table class="table table-striped table-bordered table-hover datatable">
+                    <thead>
+                        <tr class="table-title">
+                            <th>日期</th>
+                            <th>设备激活</th>
+                            <th>新增帐户</th>
+                            <th>新增设备</th>
+                        </tr>
+                    </thead>
+                    <tbody class="data-tbody">
+                        <tr class=" gradeA odd">
+                            <td>2015-05-01</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr class=" gradeA even">
+                            <td>2015-05-01</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="pageContainer"></div>
+            </div>
+         </div>
+        <!--end age.-->
+        <!--account.-->
+         <div class="account-content tab-item" data-pageNo="1" style="display:none">
+         	<div class="chart-content" data-type="area" id="account-chart">
+            	
+            </div>
+            <div class="tb-box">
+                <table class="table table-striped table-bordered table-hover datatable">
+                    <thead>
+                        <tr class="table-title">
+                            <th>日期</th>
+                            <th>设备激活</th>
+                            <th>新增帐户</th>
+                            <th>新增设备</th>
+                        </tr>
+                    </thead>
+                    <tbody class="data-tbody">
+                        <tr class=" gradeA odd">
+                            <td>2015-05-01</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr class=" gradeA even">
+                            <td>2015-05-01</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="pageContainer"></div>
+            </div>
+         </div>
+        <!--end account.-->
+      </div>
+      <!--end chart-box-->
+      
+    </div>
+  </div>
+  <!-- /#page-content-wrapper --> 
+  
+<!-- /#wrapper --> 
+</body>
+<script type="application/javascript" src="../static/js/jquery/1.11.1/jquery-1.11.1.min.js"></script>
+<script type="application/javascript" src="../static/js/bootstrap.js"></script>
+<script type="text/javascript" src="../static/js/bootpage/jquery.bootpag.min.js"></script>
+<script type="text/javascript" src="../static/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="../static/js/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script type="text/javascript" src="../static/js/highchart/highcharts.js"></script>
+<script type="text/javascript" src="../static/js/chartList/chart.js"></script>
+<script type="text/javascript" src="../static/js/bootstrap-sortable/moment.min.js"></script>
+<script type="text/javascript" src="../static/js/bootstrap-sortable/bootstrap-sortable.js"></script>
+<script type="text/javascript">
+
+(function(){
+	var add_stopAsix = 20;
+  var add_stopWidth = "100px";
+	var type_stopAsix = 20;
+	
+	$(document).ready(function () {
+	
+		$('.form_date').datetimepicker({
+			language:  'zh-cn',
+			weekStart: 1,
+			todayBtn:  1,
+			autoclose: 1,
+			todayHighlight: 1,
+			startView: 2,
+			minView: 2,
+			forceParse: 0
+		});
+	
+	   $("#type-box .menu-row").mouseenter(function(){  
+			var left=$(this).position().left; 
+
+			$("#type-box .back").stop(true,true).animate({left:left,width:"100px"}, "fast");  
+		})  
+		$("#type-box .menu-row").mouseleave(function(){
+			$("#type-box .back").stop(true,true).animate({left:type_stopAsix,width:"100px"},"fast");  
+		})  
+		
+		$("#type-box .menu-row").on("click",function(){
+			var target = $(this).attr("data-type");
+			$("#chart-tab2").find(".tab-item").css("display","none");
+			$("."+target).css("display","block");	
+	
+			$("#type-box .menu-row").removeClass("select");
+			$(this).addClass("select");
+			var left=$(this).position().left;
+			$("#type-box .back").css("left",left);
+			type_stopAsix=left; 
+		});
+	   
+	   $("#add-box .menu-row").mouseenter(function(){  
+			var left=$(this).position().left;
+      		$("#add-box .back").css("width",$(this).css("width"));
+			$("#add-box .back").stop(true,true).animate({left:left,width:$(this).css("width")}, "fast");  
+		})  
+		$("#add-box .menu-row").mouseleave(function(){
+			
+			$("#add-box .back").stop(true,true).animate({left:add_stopAsix,width:add_stopWidth},"fast");  
+		})  
+		
+		$("#add-box .menu-row").on("click",function(){
+			var target = $(this).attr("data-type");
+			$("#chart-tab1").find(".tab-item").css("display","none");
+			$("."+target).css("display","block");
+			$("#add-box .menu-row").removeClass("select");
+			$(this).addClass("select");
+			var width = $(this).css("width");
+			$("#add-box .back").css("width",$(this).css("width"));
+
+			var left=$(this).position().left;
+			$("#add-box .back").css("left",left);
+			add_stopAsix=left;
+      		add_stopWidth = width;
+		});
+		
+		
+		
+	});
+	
+	
+	
+	
+})()
+</script>
+<script type="text/javascript" src="../static/js/activePlayer.js"></script>
+
+
+</html>

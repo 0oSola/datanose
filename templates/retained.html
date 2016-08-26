@@ -1,0 +1,470 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>玩家分析-留存统计</title>
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="../static/css/common.css" />
+<link href="../static/css/font-awesome.min.css" type="text/css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../static/css/layout.css" />
+<link rel="stylesheet" type="text/css" href="../static/css/chartlayout.css" />
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap-datetimepicker/bootstrap-datetimepicker.css" />
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap-sortable/bootstrap-sortable.css"/>
+
+</head>
+
+<body>
+
+<div class="success-box" id="success-box">
+    <h4 class="success-heading">修改权限成功！！</h4>
+</div>
+
+<div class="msg-box" id="msg-box">
+    <h4 class="alert-heading">发生错误了</h4>
+    <p id="msg-content">fdfdsfd发生错误了发生错误了发生错误了发生错误了</p>
+</div>
+
+<div class="spin" id="spin">
+	<img src="../static/images/spin.svg"/>
+</div>
+
+
+<div id="wrapper" class="toggled">
+  <div class="overlay" style="visibility:hidden"></div>
+  
+  <!-- Sidebar -->
+  <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+    <ul class="nav sidebar-nav">
+      <li class="sidebar-brand"> <a href="#"> DATANOSE </a> </li>
+      <li> <a href="info"><i class="fa fa-clock-o"></i> 实时概况</a> </li>
+      <li> <a href="report"><i class="fa fa-file-text-o"></i> 报表</a> </li>
+      <li class="dropdown open"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-users"></i> 玩家分析 <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <!--<li class="dropdown-header">新增玩家</li>-->
+          <li><a href="newPlayer">新增玩家</a></li>
+          <li><a href="activePlayer">活跃玩家</a></li>
+          <li class="select"><a href="retained">留存统计</a></li>
+          <li><a href="effectPlayer">有效玩家</a></li>
+          <li><a href="#">滚服玩家</a></li>
+          <li><a href="#">标签分析</a></li>
+          <li><a href="#">设备详情</a></li>
+          <li><a href="#">生命轨迹</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-jpy"></i> 付费分析 <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <li><a href="payment">付费数据</a></li>
+          <li><a href="rechargebehavior">付费行为</a></li>
+          <li><a href="transformation">付费转化</a></li>
+          <li><a href="whale">付费排行</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-angle-double-down"></i> 流失分析 <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <!--<li class="dropdown-header">新增玩家</li>-->
+          <li><a href="outflow">流失统计</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-desktop"></i> 在线分析 <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <!--<li class="dropdown-header">新增玩家</li>-->
+          <li><a href="analysis">在线分析</a></li>
+          <li><a href="habits">在线习惯</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-road"></i> 渠道分析 <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <!--<li class="dropdown-header">新增玩家</li>-->
+          <li><a href="chaninfo">渠道分析</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-puzzle-piece"></i> 系统分析 <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <!--<li class="dropdown-header">新增玩家</li>-->
+          <li><a href="item">道具分析</a></li>
+          <li><a href="taskanalysis">任务分析</a></li>
+          <li><a href="gradeDetail">关卡分析</a></li>
+          <li><a href="gamelevel">等级分析</a></li>
+          <li><a href="currency">虚拟币统计</a></li>
+          <li><a href="#">房间分析</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-life-ring"></i> 自定义事件分析 <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <!--<li class="dropdown-header">新增玩家</li>-->
+          <li><a href="#">事件列表</a></li>
+          <li><a href="#">漏斗管理</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-location-arrow"></i> 运营支持 <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <!--<li class="dropdown-header">新增玩家</li>-->
+          <li><a href="#">精准推送</a></li>
+          <li><a href="#">数据报警</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-crosshairs"></i> 数据挖掘 <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <!--<li class="dropdown-header">新增玩家</li>-->
+          <li><a href="#">聚类分析</a></li>
+          <li><a href="#">新玩家价值</a></li>
+        </ul>
+      </li>
+      <li> <a href="#"><i class="fa fa-signal"></i> 市场分析</a> </li>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs"></i> 技术支持 <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <!--<li class="dropdown-header">新增玩家</li>-->
+          <li><a href="#">实时日志</a></li>
+          <li><a href="#">崩溃分析</a></li>
+          <li><a href="#">用户错误</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-suitcase"></i> 管理中心 <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <!--<li class="dropdown-header">新增玩家</li>-->
+          <li><a href="#">设置</a></li>
+          <li><a href="#">下载中心</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+  <!-- /#sidebar-wrapper --> 
+  
+  <!-- Page Content -->
+  <div id="page-content-wrapper">
+  	<div id="top">
+    	<div class="user-menu">
+        	<span class="menu-item">demo@datanose.com <b class="caret"></b></span>
+        	<span class="menu-item"><i class="fa fa-sign-out logout"></i></span>
+        </div>
+    </div>
+    <div class="main">
+      <div class="menu-banner">
+      	   <div class="date-row">
+                <div style="float:left;margin-top:-7px; margin-right:10px;" class="input-group date form_date col-md-5" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                    <input class="form-control form-control1" size="16" type="text" value="" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar icon-calendar"></span></span>
+                </div>
+                <input type="hidden" id="dtp_input1" value=""/>
+                <label style="float:left;margin-right:10px;">到</label>
+                <div style="float:left;margin-top:-7px; margin-right:10px;" class="input-group date form_date col-md-5" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                    <input class="form-control form-control2" size="16" type="text" value="" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar icon-calendar"></span></span>
+                </div>
+                <input type="hidden" id="dtp_input2" value=""/>
+          </div>
+      	  <span class="item-btn date-type select" id="today">今日</span>
+          <span class="item-btn date-type" id="yestday">昨日</span>
+          <span class="item-btn date-type" id="lastweek">近7日</span>
+          <span class="item-btn date-type" id="month">近30日</span>
+          <span class="item-btn date-type" id="last2month">近90日</span>
+          <span class="search-btn">查询</span>
+          <div style="margin-top:25px;">
+          	<span class="item-btn retain-btn select" data-target="retain-nomral">留存</span>
+            <span class="item-btn retain-btn" data-target="retain-self">自定义留存</span>
+            <span class="item-btn retain-btn" data-target="retain-sb">设备留存</span>
+          </div>
+      </div>
+      <!--retain-nomral-->
+      <div class="retain-type retain-nomral">
+      
+      		  <div class="tip-box">
+                    <ul>
+                    	<li>次日留存率：
+统计所选时期内，当日成功登陆游戏的新增玩家中，第二日再次登陆游戏的玩家数量，占当日游戏新增玩家数量的比例。</li>
+                        <li>7日留存率：
+    统计所选时期内，当日成功登陆游戏的新增玩家中，往后推第7日（当日不计入天数）登陆游戏的玩家数量，占当日游戏新增玩家数量的比例。</li>
+                        <li>30日留存率：
+    统计所选时期内，当日成功登陆游戏的新增玩家中，往后推第30日（当日不计入天数）登陆游戏的玩家数量，占当日游戏新增玩家数量的比例。</li>
+                    </ul>
+              </div>
+              
+              <div class="chart-box" id="chart-tab1">
+                <div class="title-box">
+                    <span class="title">新增玩家留存率</span>
+                    <span class="delete-box"><i class="fa fa-remove delete-tab"></i></span>
+                </div>
+                <div class="cs-box">
+
+                </div>
+                <div class="num-box">
+                    <p><label>次日留存率(AVG)：</label><span class="num-item">0.00%</span> <label>7日留存率(AVG)：</label><span class="num-item">0.00%</span><label>30日留存率(AVG)：</label><span class="num-item">0.00%</span></p>
+                </div>
+                <div class="chart-content" data-type="area" id="add-chart">
+                </div>
+                <div class="tb-box">
+                    <table class="table table-striped table-bordered table-hover datatable">
+                        <thead>
+                            <tr class="table-title">
+                                <th>日期</th>
+                                <th>设备激活</th>
+                                <th>新增帐户</th>
+                                <th>新增设备</th>
+                            </tr>
+                        </thead>
+                        <tbody class="data-tbody">
+                            <tr class=" gradeA odd">
+                                <td>2015-05-01</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr class=" gradeA even">
+                                <td>2015-05-01</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="pageContainer"></div>
+                </div>
+
+                
+              </div>
+              <!--end chart-box-->
+              
+      </div>
+      <!--end retain-nomral-->
+      
+      <!--retain-self-->
+      <div class="retain-type retain-self" style="display:none">
+      
+          <div class="tip-box">
+                <p>自定义留存：
+统计所选时期内，符合某自定义条件下的玩家留存情况，可以通过选择不同的限制条件来对比不同纬度的玩家留存数据。</p>
+          </div>
+          
+          <div class="chart-box" id="chart-tab1">
+            <div class="title-box">
+                <span class="title">自定义留存</span>
+                <span class="delete-box"><i class="fa fa-remove delete-tab"></i></span>
+            </div>
+            <div class="cs-box" style="padding:10px">
+                <span class="type-item">日</span>
+                <span class="type-item">月</span>
+                <span class="type-item">周</span>
+                <select>
+                	<option value="0">新增玩家</option>
+                    <option value="1">活跃玩家</option>
+                    <option value="2">付费玩家</option>
+                </select>
+                
+                 <select>
+                	<option value="0">留存率</option>
+                    <option value="1">留存人数</option>
+                </select>
+            </div>
+            <div class="tb-box">
+                <table class="table table-striped table-bordered table-hover datatable">
+                    <thead>
+                        <tr class="table-title">
+                            <th>日期</th>
+                            <th>设备激活</th>
+                            <th>新增帐户</th>
+                            <th>新增设备</th>
+                        </tr>
+                    </thead>
+                    <tbody class="data-tbody">
+                        <tr class=" gradeA odd">
+                            <td>2015-05-01</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr class=" gradeA even">
+                            <td>2015-05-01</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="pageContainer"></div>
+            </div>
+
+            
+          </div>
+          <!--end chart-box-->
+      
+      </div>
+      <!--end retain-self-->
+      
+      <!--retain-sb-->
+      <div class="retain-type retain-sb" style="display:none">
+      
+      		  <div class="tip-box">
+                    <p>次日留存率：
+统计所选时期内，当日成功登陆游戏的新增设备中，第二日再次登陆游戏的设备数量，占当日新增游戏设备数量的比例。</p>
+                    <p>7日留存率：
+统计所选时期内，当日成功登陆游戏的新增设备中，往后推第7日（当日不计入天数）登陆游戏的玩家设备，占当日新增游戏设备数量的比例。</p>
+                    <p>30日留存率：
+统计所选时期内，当日成功登陆游戏的新增设备中，往后推第30日（当日不计入天数）登陆游戏的玩家设备，占当日新增游戏设备数量的比例。</p>
+ 					<p>新增设备留存：
+统计所选时期内，当日的新增设备在后几日每日的留存情况。</p>
+              </div>
+              
+              <div class="chart-box" id="chart-tab1">
+                <div class="title-box">
+                    <span class="title">新增设备留存率</span>
+                    <span class="delete-box"><i class="fa fa-remove delete-tab"></i></span>
+                </div>
+                <div class="cs-box">
+
+                </div>
+
+                <div class="chart-content" data-type="area" id="add-chart">
+                </div>
+                <div class="tb-box">
+                    <table class="table table-striped table-bordered table-hover datatable">
+                        <thead>
+                            <tr class="table-title">
+                                <th>日期</th>
+                                <th>设备激活</th>
+                                <th>新增帐户</th>
+                                <th>新增设备</th>
+                            </tr>
+                        </thead>
+                        <tbody class="data-tbody">
+                            <tr class=" gradeA odd">
+                                <td>2015-05-01</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                            <tr class=" gradeA even">
+                                <td>2015-05-01</td>
+                                <td>0</td>
+                                <td>0</td>
+                                <td>0</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="pageContainer"></div>
+                </div>
+
+                
+              </div>
+              <!--end chart-box-->
+      
+      </div>
+      <!--end retain-sb-->
+      
+            
+      
+    </div>
+  </div>
+  <!-- /#page-content-wrapper --> 
+  
+<!-- /#wrapper --> 
+</body>
+<script type="application/javascript" src="../static/js/jquery/1.11.1/jquery-1.11.1.min.js"></script>
+<script type="application/javascript" src="../static/js/bootstrap.js"></script>
+<script type="text/javascript" src="../static/js/bootpage/jquery.bootpag.min.js"></script>
+<script type="text/javascript" src="../static/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="../static/js/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script type="text/javascript" src="../static/js/highchart/highcharts.js"></script>
+<script type="text/javascript" src="../static/js/chartList/chart.js"></script>
+<script type="text/javascript" src="../static/js/bootstrap-sortable/moment.min.js"></script>
+<script type="text/javascript" src="../static/js/bootstrap-sortable/bootstrap-sortable.js"></script>
+<script type="text/javascript">
+
+(function(){
+	var add_stopAsix = 20;
+	var type_stopAsix = 20;
+	
+	$(document).ready(function () {
+	
+		$('.form_date').datetimepicker({
+			language:  'zh-cn',
+			weekStart: 1,
+			todayBtn:  1,
+			autoclose: 1,
+			todayHighlight: 1,
+			startView: 2,
+			minView: 2,
+			forceParse: 0
+		});
+	
+	   $("#type-box .menu-row").mouseenter(function(){  
+			var left=$(this).position().left;  
+			$("#type-box .back").stop(true,true).animate({left:left,width:"100px"}, "fast");  
+		})  
+		$("#type-box .menu-row").mouseleave(function(){
+			$("#type-box .back").stop(true,true).animate({left:type_stopAsix,width:"100px"},"fast");  
+		})  
+		
+		$("#type-box .menu-row").on("click",function(){ 
+			var target = $(this).attr("data-type");
+			$("#chart-tab2").find(".tab-item").css("display","none");
+			$("."+target).css("display","block");	
+			/*if(target=='first-content'){
+				$(".tab-item").css("display","none");
+				$(".first-content").css("display","block");
+			}else if(target=='no-content'){
+				$(".tab-item").css("display","none");
+				$(".no-content").css("display","block");
+			}else if(target=='area-content'){
+				$(".tab-item").css("display","none");
+				$(".area-content").css("display","block");
+			}else if(target=='county-content'){
+				$(".tab-item").css("display","none");
+				$(".county-content").css("display","block");
+			}else if(target=='sex-content'){
+				$(".tab-item").css("display","none");
+				$(".sex-content").css("display","block");
+			}else if(target=='age-content'){
+				$(".tab-item").css("display","none");
+				$(".age-content").css("display","block");
+			}else if(target=='account-content'){
+				$(".tab-item").css("display","none");
+				$(".account-content").css("display","block");
+			}*/
+	
+			$("#type-box .menu-row").removeClass("select");
+			$(this).addClass("select");
+			var left=$(this).position().left;
+			$("#type-box .back").css("left",left);
+			type_stopAsix=left;
+		});
+	   
+	   $("#add-box .menu-row").mouseenter(function(){  
+			var left=$(this).position().left;
+			$("#add-box .back").stop(true,true).animate({left:left,width:"100px"}, "fast");  
+		})  
+		$("#add-box .menu-row").mouseleave(function(){
+			$("#add-box .back").stop(true,true).animate({left:add_stopAsix,width:"100px"},"fast");  
+		})  
+		
+		$("#add-box .menu-row").on("click",function(){
+			var target = $(this).attr("data-type");
+			$("#chart-tab1").find(".tab-item").css("display","none");
+			$("."+target).css("display","block");
+			/*if(target=='add-content'){
+				$(".change-content").css("display","none");
+				$(".add-content").css("display","block");
+			}else{
+				$(".add-content").css("display","none");
+				$(".change-content").css("display","block");
+			}*/
+			$("#add-box .menu-row").removeClass("select");
+			$(this).addClass("select");
+			var left=$(this).position().left;
+			$("#add-box .back").css("left",left);
+			add_stopAsix=left;
+		});
+		
+		
+		
+	});
+	
+	
+	
+	
+})()
+</script>
+<script type="text/javascript" src="../static/js/retained.js"></script>
+
+
+
+</html>

@@ -1,0 +1,455 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>实施概况</title>
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="../static/css/common.css" />
+<link href="../static/css/font-awesome.min.css" type="text/css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../static/css/layout.css" />
+<link rel="stylesheet" type="text/css" href="../static/css/chartlayout.css" />
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap-datetimepicker/bootstrap-datetimepicker.css" />
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap-sortable/bootstrap-sortable.css"/>
+</head>
+
+<body>
+
+<div class="success-box" id="success-box">
+    <h4 class="success-heading">修改权限成功！！</h4>
+</div>
+
+<div class="msg-box" id="msg-box">
+    <h4 class="alert-heading">发生错误了</h4>
+    <p id="msg-content">fdfdsfd发生错误了发生错误了发生错误了发生错误了</p>
+</div>
+
+<div class="spin" id="spin">
+	<img src="../static/images/spin.svg"/>
+</div>
+
+
+<div id="wrapper" class="toggled">
+  <div class="overlay" style="visibility:hidden"></div>
+  
+  <!-- Sidebar -->
+  <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+    <ul class="nav sidebar-nav">
+      <li class="sidebar-brand"> <a href="#"> DATANOSE </a> </li>
+      <li class="select"> <a href="info"><i class="fa fa-clock-o"></i> 实时概况</a> </li>
+      <li> <a href="report"><i class="fa fa-file-text-o"></i> 报表</a> </li>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-users"></i> 玩家分析 <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <!--<li class="dropdown-header">新增玩家</li>-->
+          <li><a href="newPlayer">新增玩家</a></li>
+          <li><a href="activePlayer">活跃玩家</a></li>
+          <li><a href="retained">留存统计</a></li>
+          <li><a href="effectPlayer">有效玩家</a></li>
+          <li><a href="#">滚服玩家</a></li>
+          <li><a href="#">标签分析</a></li>
+          <li><a href="#">设备详情</a></li>
+          <li><a href="#">生命轨迹</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-jpy"></i> 付费分析 <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <li><a href="payment">付费数据</a></li>
+          <li><a href="rechargebehavior">付费行为</a></li>
+          <li><a href="transformation">付费转化</a></li>
+          <li><a href="whale">付费排行</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-angle-double-down"></i> 流失分析 <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <!--<li class="dropdown-header">新增玩家</li>-->
+          <li><a href="outflow">流失统计</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-desktop"></i> 在线分析 <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <!--<li class="dropdown-header">新增玩家</li>-->
+          <li><a href="analysis">在线分析</a></li>
+          <li><a href="habits">在线习惯</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-road"></i> 渠道分析 <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <!--<li class="dropdown-header">新增玩家</li>-->
+          <li><a href="chaninfo">渠道分析</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-puzzle-piece"></i> 系统分析 <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <!--<li class="dropdown-header">新增玩家</li>-->
+          <li><a href="item">道具分析</a></li>
+          <li><a href="taskanalysis">任务分析</a></li>
+          <li><a href="gradeDetail">关卡分析</a></li>
+          <li><a href="gamelevel">等级分析</a></li>
+          <li><a href="currency">虚拟币统计</a></li>
+          <li><a href="#">房间分析</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-life-ring"></i> 自定义事件分析 <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <!--<li class="dropdown-header">新增玩家</li>-->
+          <li><a href="#">事件列表</a></li>
+          <li><a href="#">漏斗管理</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-location-arrow"></i> 运营支持 <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <!--<li class="dropdown-header">新增玩家</li>-->
+          <li><a href="#">精准推送</a></li>
+          <li><a href="#">数据报警</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-crosshairs"></i> 数据挖掘 <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <!--<li class="dropdown-header">新增玩家</li>-->
+          <li><a href="#">聚类分析</a></li>
+          <li><a href="#">新玩家价值</a></li>
+        </ul>
+      </li>
+      <li> <a href="#"><i class="fa fa-signal"></i> 市场分析</a> </li>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs"></i> 技术支持 <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <!--<li class="dropdown-header">新增玩家</li>-->
+          <li><a href="#">实时日志</a></li>
+          <li><a href="#">崩溃分析</a></li>
+          <li><a href="#">用户错误</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-suitcase"></i> 管理中心 <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <!--<li class="dropdown-header">新增玩家</li>-->
+          <li><a href="#">设置</a></li>
+          <li><a href="#">下载中心</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+  <!-- /#sidebar-wrapper --> 
+  
+  <!-- Page Content -->
+  <div id="page-content-wrapper">
+  	<div id="top">
+    	<div class="user-menu">
+        	<span class="menu-item">demo@datanose.com <b class="caret"></b></span>
+        	<span class="menu-item"><i class="fa fa-sign-out logout"></i></span>
+        </div>
+    </div>
+    <div class="main">
+      <div class="menu-banner">
+      	   <div class="date-row">
+                <div id="myclock"></div>
+          </div>
+          <!--<span class="search-btn">查询</span>-->
+      </div>
+      
+      <div class="tip-box">
+			<ul>
+            	<li> 设备激活：
+实时统计当日激活的设备数量，如果已安装的游戏激活标识被移除的话，则设备激活不会被去重。</li>
+                <li> 新增玩家：
+    实时统计当日新增玩家账号的数量。</li>
+                <li> 老玩家：
+    实时统计当日有登陆过游戏的老玩家的账号数量。</li>
+                <li> 总活跃：
+    实时统计当日所有有进行过登陆行为的玩家账号数量。</li>
+            </ul>
+      </div>
+      <!--指标tab-->
+      <div class="realTime-box">
+      	<div class="realTime-row" id="first-row">
+        	<ul class="realTime-title">
+            	<li class="realTime-item">
+                    <h3 class="title">设备激活(含重复安装)</h3>
+                    <span class="norm-content" id="equipment">1000</span>
+                    <span class="norm-add" id="equipmentAdd">+1000</span>
+                </li>
+                <li class="realTime-item">
+                    <h3 class="title">总活跃</h3>
+                    <span class="norm-content" id="totalActiveDays">1000</span>
+                    <span class="norm-add" id="totalActiveDaysAdd">+1000</span>
+                </li>
+                <li class="realTime-item">
+                    <h3 class="title">付费玩家</h3>
+                    <span class="norm-content" id="payPlayersDays">1000</span>
+                    <span class="norm-add" id="payPlayersDaysAdd">+1000</span>
+                </li>
+                <li class="realTime-item">
+                    <h3 class="title">今日收入</h3>
+                    <span class="norm-content" id="incomeToday">1000</span>
+                    <span class="norm-add" id="incomeTodayAdd">+1000</span>
+                </li>
+                <li class="realTime-item">
+                    <h3 class="title">游戏次数</h3>
+                    <span class="norm-content" id="gameNumsDays">1000</span>
+                </li>
+            </ul>
+            <ul class="realTime-content">
+            	<li class="realTime-detail">
+                    <div class="detail-row"><label class="norm-title">昨 日</label><span class="norm-content" id="equipmentDays1">1000</span></div>
+                    <div class="detail-row"><label class="norm-title">7日  前</label><span class="norm-content" id="equipmentDays7">1000</span></div>
+                    <div class="detail-row"><label class="norm-title">30日前</label><span class="norm-content" id="equipmentDays30">1000</span></div>
+                </li>
+                <li class="realTime-detail">
+                    <div class="detail-row"><label class="norm-title">昨 日</label><span class="norm-content" id="totalActiveDays1">1000</span></div>
+                    <div class="detail-row"><label class="norm-title">7日  前</label><span class="norm-content" id="totalActiveDays7">1000</span></div>
+                    <div class="detail-row"><label class="norm-title">30日前</label><span class="norm-content" id="totalActiveDays30">1000</span></div>
+                </li>
+                <li class="realTime-detail">
+                    <div class="detail-row"><label class="norm-title">昨 日</label><span class="norm-content" id="payPlayersDays1">1000</span></div>
+                    <div class="detail-row"><label class="norm-title">7日  前</label><span class="norm-content" id="payPlayersDays7">1000</span></div>
+                    <div class="detail-row"><label class="norm-title">30日前</label><span class="norm-content" id="payPlayersDays30">1000</span></div>
+                </li>
+                <li class="realTime-detail">
+                    <div class="detail-row"><label class="norm-title">昨 日</label><span class="norm-content" id="incomeToday1">1000</span></div>
+                    <div class="detail-row"><label class="norm-title">7日  前</label><span class="norm-content" id="incomeToday7">1000</span></div>
+                    <div class="detail-row"><label class="norm-title">30日前</label><span class="norm-content" id="incomeToday30">1000</span></div>
+                </li>
+                <li class="realTime-detail">
+                    <div class="detail-row"><label class="norm-title">昨 日</label><span class="norm-content" id="gameNumsDays1">1000</span></div>
+                    <div class="detail-row"><label class="norm-title">7日  前</label><span class="norm-content" id="gameNumsDays7">1000</span></div>
+                    <div class="detail-row"><label class="norm-title">30日前</label><span class="norm-content" id="gameNumsDays30">1000</span></div>
+                </li>
+            </ul>
+        </div>
+        <div class="realTime-row"  id="second-row">
+        	<ul class="realTime-title">
+            	<li class="realTime-item">
+                    <h3 class="title">新增玩家</h3>
+                    <span class="norm-content" id="playersDays">1000</span>
+                    <span class="norm-add" id="playersDaysAdd">+1000</span>
+                </li>
+                <li class="realTime-item">
+                    <h3 class="title">老玩家</h3>
+                    <span class="norm-content" id="oldPlayersDays">1000</span>
+                    <span class="norm-add" id="oldPlayersDaysAdd">+1000</span>
+                </li>
+                <li class="realTime-item">
+                    <h3 class="title">付费次数</h3>
+                    <span class="norm-content" id="payNumsDays">1000</span>
+                    <span class="norm-add" id="payNumsDaysAdd">+1000</span>
+                </li>
+                <li class="realTime-item">
+                    <h3 class="title">累计收入</h3>
+                    <span class="norm-content" id="incomeAccumulativeDays">1000</span>
+                    <span class="norm-add" id="incomeAccumulativeDaysAdd">+1000</span>
+                </li>
+                <li class="realTime-item">
+                    <h3 class="title">平均每次游戏时长</h3>
+                    <span class="norm-content" id="gameTimes">1000</span>
+                </li>
+            </ul>
+            <ul class="realTime-content">
+            	<li class="realTime-detail">
+                    <div class="detail-row"><label class="norm-title">昨 日 </label><span class="norm-content" id="playersDays1">1000</span></div>
+                    <div class="detail-row"><label class="norm-title">7日  前 </label><span class="norm-content" id="playersDays7">1000</span></div>
+                    <div class="detail-row"><label class="norm-title">30日前 </label><span class="norm-content" id="playersDays30">1000</span></div>
+                </li>
+                <li class="realTime-detail">
+                    <div class="detail-row"><label class="norm-title">昨 日 </label><span class="norm-content" id="oldPlayersDays1">1000</span></div>
+                    <div class="detail-row"><label class="norm-title">7日  前 </label><span class="norm-content" id="oldPlayersDays7">1000</span></div>
+                    <div class="detail-row"><label class="norm-title">30日前 </label><span class="norm-content" id="oldPlayersDays30">1000</span></div>
+                </li>
+                <li class="realTime-detail">
+                    <div class="detail-row"><label class="norm-title">昨 日 </label><span class="norm-content" id="payNumsDays1">1000</span></div>
+                    <div class="detail-row"><label class="norm-title">7日  前 </label><span class="norm-content" id="payNumsDays7">1000</span></div>
+                    <div class="detail-row"><label class="norm-title">30日前 </label><span class="norm-content" id="payNumsDays30">1000</span></div>
+                </li>
+                <li class="realTime-detail">
+                    <div class="detail-row"><label class="norm-title">昨 日 </label><span class="norm-content" id="incomeAccumulativeDays1">￥13000</span></div>
+                    <div class="detail-row"><label class="norm-title">7日  前 </label><span class="norm-content" id="incomeAccumulativeDays7">￥21000</span></div>
+                    <div class="detail-row"><label class="norm-title">30日前 </label><span class="norm-content" id="incomeAccumulativeDays30">￥111000</span></div>
+                </li>
+                <li class="realTime-detail">
+                    <div class="detail-row"><label class="norm-title">昨 日 </label><span class="norm-content" id="gameTimes1">1000</span></div>
+                    <div class="detail-row"><label class="norm-title">7日  前 </label><span class="norm-content" id="gameTimes7">1000</span></div>
+                    <div class="detail-row"><label class="norm-title">30日前 </label><span class="norm-content" id="gameTimes30">1000</span></div>
+                </li>
+            </ul>
+        	
+        </div>
+        <div class="realTime-menu">
+       		<span class="menu-item" data-target="first-row" data-type="content-show">
+            	<i class="fa fa-angle-down content-show"></i>
+                <i class="fa fa-angle-up content-hide" style="display:none"></i>
+            </span>
+            <span class="menu-item" data-target="second-row" data-type="content-show">
+            	<i class="fa fa-angle-down content-show"></i>
+                <i class="fa fa-angle-up content-hide" style="display:none"></i>
+            </span>
+       	</div>
+      </div>
+      
+      <!--end 指标tab-->
+      
+            
+      <div class="chart-box" id="chart-tab1">
+        <div class="cs-box">
+        	<div class="menu-box" id="type-box">
+                <a class="menu-row select" data-type="online-content">实时在线</a>
+                <a class="menu-row" data-type="equit-content">设备激活</a>
+                <a class="menu-row" data-type="add-content">新增玩家</a>
+                <a class="menu-row" data-type="active-content">活跃玩家</a>
+                <a class="menu-row" data-type="income-content">收入金额
+                <div class="back"></div></a>
+            </div>
+            <span class="delete-box"><i class="fa fa-remove delete-tab"></i></span>
+        </div>
+        <!--online-->
+         <div class="online-content tab-item" data-pageNo="1">
+         	<div class="input-group date form_date col-md-5 date-compare" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                <input class="form-control form-control1" size="16" type="text" value="" readonly>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar icon-calendar"></span></span>
+            </div>
+            <input type="hidden" id="dtp_input1" value=""/>
+         	<button class="btn btn-default add-compare compare-btn">添加</button>
+            <button class="btn btn-default remove-compare compare-btn">清空</button>
+         	<div class="chart-content" data-type="area" id="online-chart"></div>
+         </div>
+        <!--end online-->
+        <!--equit.-->
+         <div class="equit-content tab-item" data-pageNo="1" style="display:none">
+         	<div class="input-group date form_date col-md-5 date-compare" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                <input class="form-control form-control1" size="16" type="text" value="" readonly>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar icon-calendar"></span></span>
+            </div>
+            <input type="hidden" id="dtp_input1" value=""/>
+         	<button class="btn btn-default add-compare compare-btn">添加</button>
+         	<div class="chart-content" data-type="area" id="equit-chart"></div>
+         </div>
+        <!--end equit.-->
+        <!--add.-->
+         <div class="add-content tab-item" data-pageNo="1" style="display:none">
+         	<div class="input-group date form_date col-md-5 date-compare" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                <input class="form-control form-control1" size="16" type="text" value="" readonly>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar icon-calendar"></span></span>
+            </div>
+            <input type="hidden" id="dtp_input1" value=""/>
+         	<button class="btn btn-default add-compare compare-btn">添加</button>
+         	<div class="chart-content" data-type="area" id="add-chart"></div>
+         </div>
+        <!--end add.-->
+        <!--active.-->
+         <div class="active-content tab-item" data-pageNo="1" style="display:none">
+         	<div class="input-group date form_date col-md-5 date-compare" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                <input class="form-control form-control1" size="16" type="text" value="" readonly>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar icon-calendar"></span></span>
+            </div>
+            <input type="hidden" id="dtp_input1" value=""/>
+         	<button class="btn btn-default add-compare compare-btn">添加</button>
+         	<div class="chart-content" data-type="area" id="active-chart"></div>
+         </div>
+        <!--end active.-->
+        <!--income.-->
+         <div class="income-content tab-item" data-pageNo="1" style="display:none">
+         	<div class="input-group date form_date col-md-5 date-compare" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                <input class="form-control form-control1" size="16" type="text" value="" readonly>
+                <span class="input-group-addon"><span class="glyphicon glyphicon-calendar icon-calendar"></span></span>
+            </div>
+            <input type="hidden" id="dtp_input1" value=""/>
+         	<button class="btn btn-default add-compare compare-btn">添加</button>
+         	<div class="chart-content" data-type="area" id="income-chart"></div>
+         </div>
+        <!--end income.-->
+      </div>
+      <!--end chart-box-->
+      
+    </div>
+  </div>
+  <!-- /#page-content-wrapper --> 
+  
+<!-- /#wrapper --> 
+</body>
+<script type="application/javascript" src="../static/js/jquery/1.11.1/jquery-1.11.1.min.js"></script>
+<script type="application/javascript" src="../static/js/bootstrap.js"></script>
+<script type="text/javascript" src="../static/js/bootpage/jquery.bootpag.min.js"></script>
+<script type="text/javascript" src="../static/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="../static/js/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script type="text/javascript" src="../static/js/highchart/highcharts.js"></script>
+<script type="text/javascript" src="../static/js/chartList/chart.js"></script>
+<script type="text/javascript" src="../static/js/bootstrap-sortable/moment.min.js"></script>
+<script type="text/javascript" src="../static/js/bootstrap-sortable/bootstrap-sortable.js"></script>
+<script type="text/javascript">
+$(function(){
+	
+	hideNorm();
+	
+	
+	function hideNorm(){
+		$(".norm-add").addClass("norm-miss");
+		setTimeout(showNorm,3000);
+		
+	}
+	
+	function showNorm(){
+		$(".norm-add").removeClass("norm-miss");
+		setTimeout(hideNorm,3000);
+	}
+	
+	
+})
+
+</script>
+<script type="text/javascript">
+
+(function(){
+	var add_stopAsix = 20;
+  var add_stopWidth = "100px";
+	var type_stopAsix = 20;
+	
+	$(document).ready(function () {
+		
+		showClock();
+
+	
+	   $("#type-box .menu-row").mouseenter(function(){  
+			var left=$(this).position().left; 
+
+			$("#type-box .back").stop(true,true).animate({left:left,width:"100px"}, "fast");  
+		})  
+		$("#type-box .menu-row").mouseleave(function(){
+			$("#type-box .back").stop(true,true).animate({left:type_stopAsix,width:"100px"},"fast");  
+		})  
+		
+		$("#type-box .menu-row").on("click",function(){
+			var target = $(this).attr("data-type");
+			$("#chart-tab1").find(".tab-item").css("display","none");
+			$("."+target).css("display","block");	
+	
+			$("#type-box .menu-row").removeClass("select");
+			$(this).addClass("select");
+			var left=$(this).position().left;
+			$("#type-box .back").css("left",left);
+			type_stopAsix=left; 
+			
+		});
+		
+	});
+	
+	function showClock()
+    {
+		d       = new Date();
+		hours   = d.getHours();
+		minutes = d.getMinutes();
+		seconds = d.getSeconds();
+		clck = (hours>=12)?"下午":"上午";
+		hours = (hours>12)?hours-12:hours;
+		hours = (hours<10)?"0"+hours:hours;
+		minutes = (minutes<10)?"0"+minutes:minutes;
+		seconds = (seconds<10)?"0"+seconds:seconds;
+		time = clck + " " + hours + ":" + minutes + ":" + seconds;
+		time = "<font size='5' face='Arial'><b>" + time + "</b></font>";
+		myclock.innerHTML = time;
+		setTimeout(showClock,1000);
+    }
+	
+	
+})()
+</script>
+
+<script type="text/javascript" src="../static/js/info.js"></script>
+
+
+</html>

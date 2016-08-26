@@ -1,0 +1,651 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>付费分析-付费行为</title>
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap/bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="../static/css/common.css" />
+<link href="../static/css/font-awesome.min.css" type="text/css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../static/css/layout.css" />
+<link rel="stylesheet" type="text/css" href="../static/css/chartlayout.css" />
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap-datetimepicker/bootstrap-datetimepicker.css" />
+<link rel="stylesheet" type="text/css" href="../static/css/bootstrap-sortable/bootstrap-sortable.css"/>
+</head>
+
+<body>
+
+<div class="success-box" id="success-box">
+    <h4 class="success-heading">修改权限成功！！</h4>
+</div>
+
+<div class="msg-box" id="msg-box">
+    <h4 class="alert-heading">发生错误了</h4>
+    <p id="msg-content">fdfdsfd发生错误了发生错误了发生错误了发生错误了</p>
+</div>
+
+<div class="spin" id="spin">
+	<img src="../static/images/spin.svg"/>
+</div>
+
+
+<div id="wrapper" class="toggled">
+  <div class="overlay" style="visibility:hidden"></div>
+  
+  <!-- Sidebar -->
+  <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+    <ul class="nav sidebar-nav">
+      <li class="sidebar-brand"> <a href="#"> DATANOSE </a> </li>
+      <li> <a href="#"><i class="fa fa-clock-o"></i> 实时概况</a> </li>
+      <li> <a href="#"><i class="fa fa-file-text-o"></i> 报表</a> </li>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-users"></i> 玩家分析 <span class="caret"></span></a>
+        <ul class="nav sidebar-nav">
+      <li class="sidebar-brand"> <a href="#"> DATANOSE </a> </li>
+      <li> <a href="info"><i class="fa fa-clock-o"></i> 实时概况</a> </li>
+      <li> <a href="report"><i class="fa fa-file-text-o"></i> 报表</a> </li>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-users"></i> 玩家分析 <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <!--<li class="dropdown-header">新增玩家</li>-->
+          <li><a href="newPlayer">新增玩家</a></li>
+          <li><a href="activePlayer">活跃玩家</a></li>
+          <li><a href="retained">留存统计</a></li>
+          <li><a href="effectPlayer">有效玩家</a></li>
+          <li><a href="#">滚服玩家</a></li>
+          <li><a href="#">标签分析</a></li>
+          <li><a href="#">设备详情</a></li>
+          <li><a href="#">生命轨迹</a></li>
+        </ul>
+      </li>
+      <li class="dropdown open"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-jpy"></i> 付费分析 <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <li><a href="payment">付费数据</a></li>
+          <li class="select"><a href="rechargebehavior">付费行为</a></li>
+          <li><a href="transformation">付费转化</a></li>
+          <li><a href="whale">付费排行</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-angle-double-down"></i> 流失分析 <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <!--<li class="dropdown-header">新增玩家</li>-->
+          <li><a href="outflow">流失统计</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-desktop"></i> 在线分析 <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <!--<li class="dropdown-header">新增玩家</li>-->
+          <li><a href="analysis">在线分析</a></li>
+          <li><a href="habits">在线习惯</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-road"></i> 渠道分析 <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <!--<li class="dropdown-header">新增玩家</li>-->
+          <li><a href="chaninfo">渠道分析</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-puzzle-piece"></i> 系统分析 <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <!--<li class="dropdown-header">新增玩家</li>-->
+          <li><a href="item">道具分析</a></li>
+          <li><a href="taskanalysis">任务分析</a></li>
+          <li><a href="gradeDetail">关卡分析</a></li>
+          <li><a href="gamelevel">等级分析</a></li>
+          <li><a href="currency">虚拟币统计</a></li>
+          <li><a href="#">房间分析</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-life-ring"></i> 自定义事件分析 <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <!--<li class="dropdown-header">新增玩家</li>-->
+          <li><a href="#">事件列表</a></li>
+          <li><a href="#">漏斗管理</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-location-arrow"></i> 运营支持 <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <!--<li class="dropdown-header">新增玩家</li>-->
+          <li><a href="#">精准推送</a></li>
+          <li><a href="#">数据报警</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-crosshairs"></i> 数据挖掘 <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <!--<li class="dropdown-header">新增玩家</li>-->
+          <li><a href="#">聚类分析</a></li>
+          <li><a href="#">新玩家价值</a></li>
+        </ul>
+      </li>
+      <li> <a href="#"><i class="fa fa-signal"></i> 市场分析</a> </li>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs"></i> 技术支持 <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <!--<li class="dropdown-header">新增玩家</li>-->
+          <li><a href="#">实时日志</a></li>
+          <li><a href="#">崩溃分析</a></li>
+          <li><a href="#">用户错误</a></li>
+        </ul>
+      </li>
+      <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-suitcase"></i> 管理中心 <span class="caret"></span></a>
+        <ul class="dropdown-menu" role="menu">
+          <!--<li class="dropdown-header">新增玩家</li>-->
+          <li><a href="#">设置</a></li>
+          <li><a href="#">下载中心</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+  <!-- /#sidebar-wrapper --> 
+  
+  <!-- Page Content -->
+  <div id="page-content-wrapper">
+  	<div id="top">
+    	<div class="user-menu">
+        	<span class="menu-item">demo@datanose.com <b class="caret"></b></span>
+        	<span class="menu-item"><i class="fa fa-sign-out logout"></i></span>
+        </div>
+    </div>
+    <div class="main">
+      <div class="menu-banner">
+      	   <div class="date-row">
+                <div style="float:left;margin-top:-7px; margin-right:10px;" class="input-group date form_date col-md-5" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                    <input class="form-control form-control1" size="16" type="text" value="" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar icon-calendar"></span></span>
+                </div>
+                <input type="hidden" id="dtp_input1" value=""/>
+                <label style="float:left;margin-right:10px;">到</label>
+                <div style="float:left;margin-top:-7px; margin-right:10px;" class="input-group date form_date col-md-5" data-date="" data-date-format="yyyy-mm-dd" data-link-field="dtp_input2" data-link-format="yyyy-mm-dd">
+                    <input class="form-control form-control2" size="16" type="text" value="" readonly>
+                    <span class="input-group-addon"><span class="glyphicon glyphicon-calendar icon-calendar"></span></span>
+                </div>
+                <input type="hidden" id="dtp_input2" value=""/>
+          </div>
+      	  <span class="item-btn date-type select" id="today">今日</span>
+          <span class="item-btn date-type" id="yestday">昨日</span>
+          <span class="item-btn date-type" id="lastweek">近7日</span>
+          <span class="item-btn date-type" id="month">近30日</span>
+          <span class="item-btn date-type" id="last2month">近90日</span>
+          <span class="search-btn">查询</span>
+      </div>
+
+      <div class="tip-box">
+			<ul>
+            	<li>付费金额(等级)：
+统计所选时期内，玩家在所处等级进行充值时，充值总金额和等级对应分布情况。</li>
+                <li>付费次数(等级)：
+    统计所选时期内，玩家在所处等级付费总次数与等级对应分布。</li>
+                <li>首充游戏时间：
+    统计所选时期内，玩家从注册游戏开始第一次有成功充值行为时，累计进行的游戏时间区间分布。</li>
+                <li>二充到首充游戏时间：
+    统计所选时期内，玩家第二次成功充值距离第一次成功充值时，累计进行的游戏时间区间分布。</li>
+            </ul>
+      </div>
+      
+      <div class="chart-box" id="chart-tab1">
+      	<div class="title-box">
+        	<span class="title">付费等级</span>
+            <span class="delete-box"><i class="fa fa-remove delete-tab"></i></span>
+        </div>
+        <div class="cs-box">
+        	<div class="menu-box" id="level-box">
+                <a class="menu-row select" data-type="fprice-content">付费金额</a>
+                <a class="menu-row"  data-type="fnum-content">付费次数
+                <div class="back" ></div></a>
+            </div>
+        </div>
+     	<!--fprice-->
+        <div class="fprice-content tab-item" data-pageNo="1">
+            <div class="chart-content" data-type="area" id="fprice-chart">
+            </div>
+            <div class="tb-box">
+                <table class="table table-striped table-bordered table-hover datatable">
+                    <thead>
+                        <tr class="table-title">
+                            <th>日期</th>
+                            <th>设备激活</th>
+                            <th>新增帐户</th>
+                            <th>新增设备</th>
+                        </tr>
+                    </thead>
+                    <tbody class="data-tbody">
+                        <tr class=" gradeA odd">
+                            <td>2015-05-01</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr class=" gradeA even">
+                            <td>2015-05-01</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="pageContainer"></div>
+            </div>
+        </div>
+        <!--end fprice-->
+        <!--fperson-->
+        <div class="fperson-content tab-item" data-pageNo="1" style="display:none">
+            <div class="chart-content" data-type="area" id="fperson-chart">
+            </div>
+            <div class="tb-box">
+                <table class="table table-striped table-bordered table-hover datatable">
+                    <thead>
+                        <tr class="table-title">
+                            <th>日期</th>
+                            <th>设备激活</th>
+                            <th>新增帐户</th>
+                            <th>新增设备</th>
+                        </tr>
+                    </thead>
+                    <tbody class="data-tbody">
+                        <tr class=" gradeA odd">
+                            <td>2015-05-01</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr class=" gradeA even">
+                            <td>2015-05-01</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="pageContainer"></div>
+            </div>
+        </div>
+        <!--fperson add-->
+        <!--fnum-->
+        <div class="fnum-content tab-item" data-pageNo="1" style="display:none">
+            <div class="chart-content" data-type="area" id="fnum-chart">
+            </div>
+            <div class="tb-box">
+                <table class="table table-striped table-bordered table-hover datatable">
+                    <thead>
+                        <tr class="table-title">
+                            <th>日期</th>
+                            <th>设备激活</th>
+                            <th>新增帐户</th>
+                            <th>新增设备</th>
+                        </tr>
+                    </thead>
+                    <tbody class="data-tbody">
+                        <tr class=" gradeA odd">
+                            <td>2015-05-01</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr class=" gradeA even">
+                            <td>2015-05-01</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="pageContainer"></div>
+            </div>
+        </div>
+        <!--fnum add-->
+        
+      </div>
+      <!--end chart-box-->
+           
+       <div class="chart-box" id="chart-tab3">
+      	<div class="title-box">
+        	<span class="title">付费间隔</span>
+            <span class="delete-box"><i class="fa fa-remove delete-tab"></i></span>
+        </div>
+        
+        <div class="cs-box">
+        	<div class="menu-box" id="pay-box">
+                <a class="menu-row select" style="width:150px" data-type="onePay-content">首充游戏时间分布</a>
+                <a class="menu-row" style="width:150px" data-type="twoPay-content">二充到首充时间分布</a>
+                <a class="menu-row" style="width:150px" data-type="threePay-content">三充到二充时间分布
+                <div class="back" style="width:150px;"></div></a>
+            </div>
+        </div>
+
+     	<!--onePay-->
+        <div class="onePay-content tab-item" data-pageNo="1">
+            <div class="chart-content" data-type="area" id="onePay-chart">
+            </div>
+            <div class="tb-box">
+                <table class="table table-striped table-bordered table-hover datatable">
+                    <thead>
+                        <tr class="table-title">
+                            <th>日期</th>
+                            <th>设备激活</th>
+                            <th>新增帐户</th>
+                            <th>新增设备</th>
+                        </tr>
+                    </thead>
+                    <tbody class="data-tbody">
+                        <tr class=" gradeA odd">
+                            <td>2015-05-01</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr class=" gradeA even">
+                            <td>2015-05-01</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="pageContainer"></div>
+            </div>
+        </div>
+        <!--end onePay-->
+        <!--twoPay-->
+        <div class="twoPay-content tab-item" data-pageNo="1" style="display:none">
+            <div class="chart-content" data-type="area" id="twoPay-chart">
+            </div>
+            <div class="tb-box">
+                <table class="table table-striped table-bordered table-hover datatable">
+                    <thead>
+                        <tr class="table-title">
+                            <th>日期</th>
+                            <th>设备激活</th>
+                            <th>新增帐户</th>
+                            <th>新增设备</th>
+                        </tr>
+                    </thead>
+                    <tbody class="data-tbody">
+                        <tr class=" gradeA odd">
+                            <td>2015-05-01</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr class=" gradeA even">
+                            <td>2015-05-01</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="pageContainer"></div>
+            </div>
+        </div>
+        <!--twoPay add-->
+        <!--threePay-->
+        <div class="threePay-content tab-item" data-pageNo="1" style="display:none">
+            <div class="chart-content" data-type="area" id="threePay-chart">
+            </div>
+            <div class="tb-box">
+                <table class="table table-striped table-bordered table-hover datatable">
+                    <thead>
+                        <tr class="table-title">
+                            <th>日期</th>
+                            <th>设备激活</th>
+                            <th>新增帐户</th>
+                            <th>新增设备</th>
+                        </tr>
+                    </thead>
+                    <tbody class="data-tbody">
+                        <tr class=" gradeA odd">
+                            <td>2015-05-01</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr class=" gradeA even">
+                            <td>2015-05-01</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="pageContainer"></div>
+            </div>
+        </div>
+        <!--threePay add-->
+        
+      </div>
+      <!--end chart-box-->
+           
+            
+      <div class="chart-box" id="chart-tab2">
+        <div class="cs-box">
+        	<div class="menu-box" id="type-box">
+           
+                <a class="menu-row" data-type="fPcricle-content">玩家首付周期</a>
+                <a class="menu-row" data-type="fPLevel-content"> 玩家首付等级</a>
+                <a class="menu-row" data-type="fPPrice-content">玩家首付金额</a>
+                <div class="back"></div></a>
+            </div>
+            <span class="delete-box"><i class="fa fa-remove delete-tab"></i></span>
+        </div>
+        <!--fPcricle.-->
+         <div class="fPcricle-content tab-item" data-pageNo="1" data-pageNo="1">
+         	<div class="chart-content" data-type="bar" id="fPcricle-chart">
+            	
+            </div>
+            <div class="tb-box">
+                <table class="table table-striped table-bordered table-hover datatable">
+                    <thead>
+                        <tr class="table-title">
+                            <th>日期</th>
+                            <th>设备激活</th>
+                            <th>新增帐户</th>
+                            <th>新增设备</th>
+                        </tr>
+                    </thead>
+                    <tbody class="data-tbody">
+                        <tr class=" gradeA odd">
+                            <td>2015-05-01</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr class=" gradeA even">
+                            <td>2015-05-01</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="pageContainer"></div>
+            </div>
+         </div>
+        <!--fPcricle area.-->
+        <!--fPLevel.-->
+         <div class="fPLevel-content tab-item" data-pageNo="1" style="display:none">
+         	<div class="chart-content" data-type="area" id="fPLevel-chart">
+            	
+            </div>
+            <div class="tb-box">
+                <table class="table table-striped table-bordered table-hover datatable">
+                    <thead>
+                        <tr class="table-title">
+                            <th>日期</th>
+                            <th>设备激活</th>
+                            <th>新增帐户</th>
+                            <th>新增设备</th>
+                        </tr>
+                    </thead>
+                    <tbody class="data-tbody">
+                        <tr class=" gradeA odd">
+                            <td>2015-05-01</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr class=" gradeA even">
+                            <td>2015-05-01</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="pageContainer"></div>
+            </div>
+         </div>
+        <!--fPLevel county.-->
+        <!--fPPrice.-->
+         <div class="fPPrice-content tab-item" data-pageNo="1" style="display:none">
+         	<div class="chart-content" data-type="bar" id="fPPrice-chart">
+            	
+            </div>
+            <div class="tb-box">
+                <table class="table table-striped table-bordered table-hover datatable">
+                    <thead>
+                        <tr class="table-title">
+                            <th>日期</th>
+                            <th>设备激活</th>
+                            <th>新增帐户</th>
+                            <th>新增设备</th>
+                        </tr>
+                    </thead>
+                    <tbody class="data-tbody">
+                        <tr class=" gradeA odd">
+                            <td>2015-05-01</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                        <tr class=" gradeA even">
+                            <td>2015-05-01</td>
+                            <td>0</td>
+                            <td>0</td>
+                            <td>0</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="pageContainer"></div>
+            </div>
+         </div>
+        <!--end county.-->
+        
+      </div>
+      <!--end chart-box-->
+      
+    </div>
+  </div>
+  <!-- /#page-content-wrapper --> 
+  
+<!-- /#wrapper --> 
+</body>
+<script type="application/javascript" src="../static/js/jquery/1.11.1/jquery-1.11.1.min.js"></script>
+<script type="application/javascript" src="../static/js/bootstrap.js"></script>
+<script type="text/javascript" src="../static/js/bootpage/jquery.bootpag.min.js"></script>
+<script type="text/javascript" src="../static/js/bootstrap-datetimepicker/bootstrap-datetimepicker.min.js"></script>
+<script type="text/javascript" src="../static/js/bootstrap-datetimepicker/locales/bootstrap-datetimepicker.zh-CN.js"></script>
+<script type="text/javascript" src="../static/js/highchart/highcharts.js"></script>
+<script type="text/javascript" src="../static/js/chartList/chart.js"></script>
+<script type="text/javascript" src="../static/js/bootstrap-sortable/moment.min.js"></script>
+<script type="text/javascript" src="../static/js/bootstrap-sortable/bootstrap-sortable.js"></script>
+<script type="text/javascript">
+
+(function(){
+	var add_stopAsix = 20;
+  	var add_stopWidth = "100px";
+	var type_stopAsix = 20;
+	
+	var pay_stopWidth = "150px";
+	
+	
+	$(document).ready(function () {
+		$('.form_date').datetimepicker({
+			language:  'zh-cn',
+			weekStart: 1,
+			todayBtn:  1,
+			autoclose: 1,
+			todayHighlight: 1,
+			startView: 2,
+			minView: 2,
+			forceParse: 0
+		});
+	
+	   $("#type-box .menu-row").mouseenter(function(){  
+			var left=$(this).position().left; 
+			$("#type-box .back").stop(true,true).animate({left:left,width:"100px"}, "fast");  
+		})  
+		$("#type-box .menu-row").mouseleave(function(){
+			$("#type-box .back").stop(true,true).animate({left:type_stopAsix,width:"100px"},"fast");  
+		})  
+		
+		$("#type-box .menu-row").on("click",function(){
+			var target = $(this).attr("data-type");
+			$("#chart-tab2").find(".tab-item").css("display","none");
+			$("."+target).css("display","block");	
+	
+			$("#type-box .menu-row").removeClass("select");
+			$(this).addClass("select");
+			var left=$(this).position().left;
+			$("#type-box .back").css("left",left);
+			type_stopAsix=left;
+		});
+		
+	   //pay-box
+	   $("#level-box .menu-row").mouseenter(function(){  
+			var left=$(this).position().left;
+      	$("#level-box .back").css("width",$(this).css("width"));
+			$("#level-box .back").stop(true,true).animate({left:left,width:$(this).css("width")}, "fast");  
+		})  
+		$("#level-box .menu-row").mouseleave(function(){
+			
+			$("#level-box .back").stop(true,true).animate({left:add_stopAsix,width:add_stopWidth},"fast");  
+		})  
+		
+		$("#level-box .menu-row").on("click",function(){
+			var target = $(this).attr("data-type");
+			$("#chart-tab1").find(".tab-item").css("display","none");
+			$("."+target).css("display","block");
+			$("#level-box .menu-row").removeClass("select");
+			$(this).addClass("select");
+      var width = $(this).css("width");
+      $("#level-box .back").css("width",$(this).css("width"));
+
+			var left=$(this).position().left;
+			$("#pay-box .back").css("left",left);
+			add_stopAsix=left;
+      add_stopWidth = width;
+		});
+		
+		//pay-box
+		$("#pay-box .menu-row").mouseenter(function(){  
+			var left=$(this).position().left;
+      	$("#pay-box .back").css("width",$(this).css("width"));
+			$("#pay-box .back").stop(true,true).animate({left:left,width:$(this).css("width")}, "fast");  
+		})  
+		$("#pay-box .menu-row").mouseleave(function(){
+			
+			$("#pay-box .back").stop(true,true).animate({left:add_stopAsix,width:pay_stopWidth},"fast");  
+		})  
+		$("#pay-box .menu-row").on("click",function(){
+			var target = $(this).attr("data-type");
+			$("#chart-tab3").find(".tab-item").css("display","none");
+			$("."+target).css("display","block");
+			$("#pay-box .menu-row").removeClass("select");
+			$(this).addClass("select");
+      var width = $(this).css("width");
+      $("#pay-box .back").css("width",$(this).css("width"));
+
+			var left=$(this).position().left;
+			$("#pay-box .back").css("left",left);
+			add_stopAsix=left;
+      add_stopWidth = width;
+		});
+		
+	});
+	
+	 
+	
+	
+})()
+</script>
+
+<script type="text/javascript" src="../static/js/rechargebehavior.js"></script>
+
+
+</html>

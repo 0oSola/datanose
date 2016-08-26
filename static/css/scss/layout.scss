@@ -1,0 +1,283 @@
+/* Scss Document */
+
+body {
+  position: relative;
+  overflow-x: hidden;
+}
+
+body, html {
+  height: 100%;
+  background-color: #583e7e;
+  background-color: #f0f0f0;
+}
+
+.nav .open > a { background-color: transparent; }
+
+.nav .open > a:hover { background-color: transparent; }
+
+.nav .open > a:focus { background-color: transparent; }
+
+/*-------------------------------*/
+/*           Wrappers            */
+/*-------------------------------*/
+
+#wrapper {
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  padding-left: 0;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+}
+
+#wrapper.toggled { padding-left: 220px; }
+
+#wrapper.toggled #sidebar-wrapper { width: 220px; }
+
+#wrapper.toggled #page-content-wrapper {
+  /*margin-right: -220px;*/
+}
+
+#sidebar-wrapper {
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  -webkit-transition: all 0.5s ease;
+  background: #1a1a1a;
+  height: 100%;
+  left: 220px;
+  margin-left: -220px;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  width: 0;
+  z-index: 1000;
+}
+#sidebar-wrapper::-webkit-scrollbar {
+ display: none;
+}
+
+#page-content-wrapper {
+  width: 100%;
+}
+
+/*-------------------------------*/
+/*     Sidebar nav styles        */
+/*-------------------------------*/
+
+.sidebar-nav {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  top: 0;
+  width: 220px;
+}
+
+.sidebar-nav li {
+  display: inline-block;
+  line-height: 20px;
+  position: relative;
+  width: 100%;
+}
+
+.sidebar-nav li:before {
+  -moz-transition: width 0.2s ease-in;
+  -ms-transition: width 0.2s ease-in;
+  -webkit-transition: width 0.2s ease-in;
+  background-color: #1c1c1c;
+  content: '';
+  height: 100%;
+  left: 0;
+  position: absolute;
+  top: 0;
+  -webkit-transition: width 0.2s ease-in;
+  transition: width 0.2s ease-in;
+  width: 3px;
+  z-index: -1;
+}
+
+.sidebar-nav li:first-child a {
+  background-color: #1a1a1a;
+  color: #ffffff;
+}
+
+.dropdown-menu li a{
+	background-color: #1a1a1a;
+  	color: #ffffff;
+}
+.dropdown-menu .select{
+	background-color: #C55B57;
+	a{
+		background-color: #C55B57!important;
+	}
+}
+.sidebar-nav li:before { background-color: #C55B57; }
+/*
+.sidebar-nav li:nth-child(2):before { background-color: #52418a; }
+
+.sidebar-nav li:nth-child(3):before { background-color: #5c499c; }
+
+.sidebar-nav li:nth-child(4):before { background-color: #6651ad; }
+
+.sidebar-nav li:nth-child(5):before { background-color: #7562b5; }
+
+.sidebar-nav li:nth-child(6):before { background-color: #8473be; }
+
+.sidebar-nav li:nth-child(7):before { background-color: #9485c6; }
+
+.sidebar-nav li:nth-child(8):before { background-color: #a396ce; }
+
+.sidebar-nav li:nth-child(9):before { background-color: #b2a7d6; }
+*/
+.sidebar-nav li:hover:before {
+  -webkit-transition: width 0.2s ease-in;
+  transition: width 0.2s ease-in;
+  width: 100%;
+}
+
+.sidebar-nav li a {
+  color: #dddddd;
+  display: block;
+  padding: 10px 15px 10px 30px;
+  text-decoration: none;
+}
+
+.sidebar-nav li.open:hover before {
+  -webkit-transition: width 0.2s ease-in;
+  transition: width 0.2s ease-in;
+  width: 100%;
+}
+
+.sidebar-nav .dropdown-menu {
+  background-color: #222222;
+  border-radius: 0;
+  border: none;
+  box-shadow: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+  width: 100%;
+  li{
+	 a{
+		padding-left:45px;	
+	}
+  }
+}
+
+.sidebar-nav li a:hover, .sidebar-nav li a:active, .sidebar-nav li a:focus, .sidebar-nav li.open a:hover, .sidebar-nav li.open a:active, .sidebar-nav li.open a:focus {
+  background-color: transparent;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.sidebar-nav > .sidebar-brand {
+  font-size: 20px;
+  height: 65px;
+  line-height: 44px;
+}
+
+
+
+
+/* SOME DEMO STYLES - NOT REQUIRED */
+
+body, html { background-color: #583e7e;background-color: #f0f0f0; }
+
+
+body a {
+  text-decoration: underline;
+}
+
+
+
+/*main*/
+
+/*TOP*/
+#top{
+	width:100%;
+	height:65px;
+	background:#fff;
+	border-bottom:1px solid #ccc;
+}
+.user-menu{
+	float:right;
+	.menu-item{
+		float:left;
+		margin-right:20px;
+		display:inline-block;
+		vertical-align:middle;
+		height:65px;
+		line-height:65px;
+	}
+}
+
+/*end top*/
+.main{
+	margin:20px;	
+	
+}
+body p{
+	color:#333;
+}
+
+
+.logout{
+	border-radius:300px;
+	border:1px solid #ccc;
+	padding:10px;
+	cursor:pointer;
+	&:hover{
+		background:#C55B57;
+		color:#fff;
+		border:1px solid #C55B57;
+	}
+}
+/*end main*/
+.bootpag .active a{
+	background:#C55B57;
+	border-color:#C55B57;
+	&:focus{
+		background:#C55B57;
+		border-color:#C55B57;
+	}
+}
+
+.pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover, .pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus{
+	background:#C55B57;
+	border-color:#C55B57;
+}
+
+.pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover, .pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus{
+	background:#C55B57;
+	border-color:#C55B57;
+}
+
+.bootpag li a{
+	color:#C55B57;
+}
+
+
+.sidebar-nav{
+	.select{
+		background-color: #C55B57;
+		a{
+			color:#fff;
+			background-color: #C55B57!important;
+		}
+	}
+}
+
+.date-compare{
+	float:left!important;
+	margin-left:20px;
+	margin-top:10px;
+	margin-right:10px;
+	margin-bottom:20px;
+}
+
+.compare-btn{
+	margin-top:10px;
+	margin-right:10px;
+	margin-bottom:20px;
+}
